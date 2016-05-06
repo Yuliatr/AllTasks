@@ -18,8 +18,8 @@ public class Chat extends HttpServlet {
             writeLine(response, s1);
 
             writeLine(response, "HISTORY OF MESSAGES");
-            readFileWriteInBrowser(response,"E:/Chat/src/main/resources/history.txt");
-            readFileWriteInBrowser(response,"E:/Chat/src/main/resources/ChatHTML.html");
+            readFileWriteInBrowser(response,"../../../../../../../resources/history.txt");
+            readFileWriteInBrowser(response,"../../../../../../../resources/ChatHTML.html");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -29,7 +29,7 @@ public class Chat extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {// принимает от пользователя новую строку, добавляет в кооллекциюю, возвращает новую коллекцию
         if (request != null) {
             String message = request.getParameter("message");
-            addHistory(message,"E:/Chat/src/main/resources/history.txt" );
+                addHistory(message, "../../../../../../../resources/history.txt");
         }
         doGet(request, response);
     }
