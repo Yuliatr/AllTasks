@@ -1,0 +1,38 @@
+body {
+    display: block;
+    text-align: center;
+    background-color: rgba(0, 150, 136, 0.06);
+    width: 70%;
+    margin: auto;
+}
+
+input#placeForMessage{
+    border: 2px solid rgba(220,220,220,1);
+    color: #2980b9;
+    font-size: 16px;
+    box-shadow: 1px 1px 3px 1px rgba(200,200,200, 0.2) inset;
+    padding: 1em;
+    width: 17em;
+    outline: none;
+    margin: 0;
+    border-radius: 3px;
+}
+input#placeForMessage:hover{
+    border-color: rgb(147, 191, 220);
+}
+
+input[placeholder] {
+    text-overflow:ellipsis;
+}
+
+input[placeholder]:focus: {
+    color: transparent
+}
+
+input#myButton {
+    background: #FFFFFF url(mail_icon.png);
+    width: 70px;
+    height: 47px;
+    color: #F4D9FF;
+    border: none;
+}
