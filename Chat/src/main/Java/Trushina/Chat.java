@@ -9,7 +9,7 @@ public class Chat extends HttpServlet {
     private int initCount = 0;
     private BufferedReader br;
     private BufferedWriter bw;
-
+//add commit
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         try {
