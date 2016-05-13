@@ -6,56 +6,55 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
 public class Chat extends HttpServlet {
-    private int initCount = 0;
     private BufferedReader br;
     private BufferedWriter bw;
-//add commit
+    Writer webWriter;
+    String pathToHistory = "../../../../../../../resources/history.txt";
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         try {
-            response.setContentType("text/html;charset=UTF-8");
-            String s1 = "Hello, World! " + initCount;
-            writeLine(response, s1);
+            response.setContentType("text/html");
+            webWriter = response.getWriter();
 
-            writeLine(response, "HISTORY OF MESSAGES");
-            readFileWriteInBrowser(response,"../../../../../../../resources/history.txt");
-            readFileWriteInBrowser(response,"../../../../../../../resources/ChatHTML.html");
+            readFileWriteInBrowser(webWriter,"../../../../../../../IdeaWorkspace/Chat/src/main/webapp/HTML/ChatHTML1.html");
+            readFileWriteInBrowser(webWriter,pathToHistory);
+            readFileWriteInBrowser(webWriter,"../../../../../../../IdeaWorkspace/Chat/src/main/webapp/HTML/ChatHTML2.html");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        initCount++;
     }
+
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {// принимает от пользователя новую строку, добавляет в кооллекциюю, возвращает новую коллекцию
         if (request != null) {
             String message = request.getParameter("message");
-                addHistory(message, "../../../../../../../resources/history.txt");
+                addHistory(message, pathToHistory);
         }
         doGet(request, response);
     }
 
-    public void writeLine(HttpServletResponse response, String message) throws IOException {
+    private void writeLine(HttpServletResponse response, String message) throws IOException {
         message += "<br>";
         response.getWriter().write(message, 0, message.length());
     }
 
-    public void readFileWriteInBrowser(HttpServletResponse response, String pathToFile)throws IOException {
+    private void readFileWriteInBrowser(Writer writer, String pathToFile)throws IOException {
         String mess;
         br = new BufferedReader((new FileReader(pathToFile)));
-        //определение типа оправляемых данных
-        response.setContentType("text/html;charset=UTF-8");
         if (pathToFile.endsWith(".txt")) {
             while ((mess = br.readLine()) != null) {
-                response.getWriter().write(mess + "</br>");
+                webWriter.write(mess + "</br>");
             }
         } else {
             while ((mess=br.readLine())!= null){
-                response.getWriter().write(mess, 0, mess.length());
+                webWriter.write(mess, 0, mess.length());
             }
         }
     }
 
-    public void addHistory(String message, String pathToHistory) throws IOException {
+    private void addHistory(String message, String pathToHistory) throws IOException {
         if (message != null) {
             // true -> данные записываются в конец файла (вместо перезапии всего файла)
             FileWriter fl = new FileWriter(pathToHistory, true);
