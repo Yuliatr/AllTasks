@@ -17,11 +17,11 @@ public class PrimServletChat extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         webWriter = response.getWriter();
-        readFileWriteInBrowser(webWriter ,"../../../../../../../IdeaWorkspace/Chat/src/main/webapp/HTML/ChatHTML1.html");
+        readFileWriteInBrowser(webWriter ,"../HTML/ChatHTML1.html");
         for (String mes: history) {
             webWriter.write(mes + "</br>");
         }
-        readFileWriteInBrowser(webWriter ,"../../../../../../../IdeaWorkspace/Chat/src/main/webapp/HTML/ChatHTML2.html");
+        readFileWriteInBrowser(webWriter ,"../HTML/ChatHTML2.html");
 
     }
 
