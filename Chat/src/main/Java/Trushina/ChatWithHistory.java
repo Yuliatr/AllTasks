@@ -17,9 +17,9 @@ public class ChatWithHistory extends HttpServlet {
             response.setContentType("text/html");
             webWriter = response.getWriter();
 
-            readFileWriteInBrowser(webWriter,"../../../../../../../IdeaWorkspace/Chat/src/main/webapp/HTML/ChatHTML1.html");
+            readFileWriteInBrowser(webWriter,"../HTML/ChatHTML1.html");
             readFileWriteInBrowser(webWriter,pathToHistory);
-            readFileWriteInBrowser(webWriter,"../../../../../../../IdeaWorkspace/Chat/src/main/webapp/HTML/ChatHTML2.html");
+            readFileWriteInBrowser(webWriter,"../HTML/ChatHTML2.html");
 
         } catch (IOException e) {
             e.printStackTrace();
